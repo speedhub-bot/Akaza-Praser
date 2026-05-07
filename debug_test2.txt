@@ -1,0 +1,14 @@
+﻿Original dork: 'Membresφa VIP .htm?cat='
+Cleaned query: 'Membresφa VIP'
+
+[Bing] Status=200 | Blocked=False | HTML_size=120032 | All_hrefs=112 | Real_hrefs=0
+  HTML snippet: <!DOCTYPE html><html dir="ltr" lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:Web="http://schemas.live.com/Web/"><script type="text/javascript" nonce="MrSdFrkZy/IhsOwdzk8IJT1otdxx6/her+FapUiT8lo=" >//<![CDATA[
+ si_ST=new Date
+ //]]></script><head><!--pc--><title>Membres&#237;a VI
+
+[Yahoo] Status=200 | Blocked=False | HTML_size=113537 | All_hrefs=76 | Real_hrefs=5
+[Yahoo] ERROR: 'charmap' codec can't encode character '\u2192' in position 2: character maps to <undefined>
+
+[DuckDuckGo] Status=200 | Blocked=False | HTML_size=32468 | All_hrefs=0 | Real_hrefs=0
+  HTML snippet: <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  <!--[if IE 6]><html class="ie6" xmlns="http://www.w3.org/1999/xhtml"><![endif]--> <!--[if IE 7]><html class="lt-ie8 lt-ie9" xmlns="http://www.w3.org/1999/xhtml"><![endif]--> <!-
+

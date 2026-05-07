@@ -1,0 +1,6 @@
+# Akaza Dork Parser - Proxies
+# Place one proxy per line (IP:PORT format)
+# Lines starting with # are ignored
+# Example:
+# 127.0.0.1:8080
+# 192.168.1.1:3128
