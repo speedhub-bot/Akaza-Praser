@@ -1,0 +1,26 @@
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = [
+    "debug_*",
+    "ddg_debug*",
+    "dorks.js",
+    "urls_*.txt",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "RUF"]
+ignore = [
+    "E501",   # line too long — wrapped header strings, sample HTML in tests
+    "B008",   # default arg call — fine for asyncio.Semaphore() style
+    "RUF012", # mutable class default — used intentionally for engine instance lists
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011"]
+"akaza.py" = ["E402"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "-q --tb=short"

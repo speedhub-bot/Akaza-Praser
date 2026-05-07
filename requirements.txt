@@ -1,0 +1,18 @@
+# Core HTTP / parsing
+aiohttp>=3.9
+aiohttp-socks>=0.8
+beautifulsoup4>=4.12
+duckduckgo-search>=5.0
+colorama>=0.4
+
+# TLS-fingerprint-spoofing HTTP client (Chrome 131 JA3 impersonation).
+# Strongly recommended — without it Google / Bing block almost everything.
+curl_cffi>=0.7
+
+# Optional: Selenium engine (kept for backwards compatibility with v8 Chrome mode)
+selenium>=4.20
+webdriver-manager>=4.0
+
+# Dev / test
+pytest>=8.0
+ruff>=0.6
