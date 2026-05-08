@@ -199,10 +199,24 @@ class ProxyManager:
             raw = random.choice(self._proxies)
             return self._format(raw)
 
+    @staticmethod
+    def _is_resi_proxy(proxy: str) -> bool:
+        """A residential gateway is sticky-session and should NEVER be banned."""
+        return bool(_RESI_PATTERNS.search(proxy or ""))
+
     def ban(self, proxy_url: str, seconds: float = _BAN_TTL) -> None:
-        """Temporarily ban a proxy after a hard failure."""
-        if self._is_residential:
-            return  # never ban residential gateways
+        """Temporarily ban a proxy after a hard failure.
+
+        Residential gateway hostnames (oxylabs/smartproxy/brightdata/...) are
+        sticky-session — a bad response is the back-end node failing, not the
+        gateway itself, so banning the gateway is wrong. Per-proxy check, NOT
+        pool-wide: a mixed pool with both regular proxies and a residential
+        gateway should still ban the regular ones on hard failure.
+        """
+        if not proxy_url:
+            return
+        if self._is_resi_proxy(proxy_url):
+            return  # never ban a residential gateway entry
         with self._lock:
             self._banned[proxy_url] = time.time() + seconds
 

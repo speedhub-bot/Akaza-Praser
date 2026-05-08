@@ -61,6 +61,34 @@ def test_residential_not_banned():
     assert pm.next_proxy() == proxy
 
 
+def test_mixed_pool_bans_only_regular_proxies():
+    """Per-proxy ban check: a residential gateway in the pool must NOT
+    grant immunity to regular proxies in the same pool."""
+    pm = ProxyManager()
+    pm.load_from_list(
+        [
+            "1.1.1.1:80",  # regular, MUST be bannable
+            "2.2.2.2:80",  # regular, MUST be bannable
+            "user:pass@gate.smartproxy.com:7000",  # residential, never banned
+        ],
+        protocol="http",
+    )
+    assert pm.is_residential is True  # pool-level flag still set
+
+    # Ban a regular proxy.
+    pm.ban("http://1.1.1.1:80", seconds=300)
+    seen = {pm.next_proxy() for _ in range(12)}
+    assert "http://1.1.1.1:80" not in seen, \
+        "regular proxy ban was silently ignored because pool contained a resi entry"
+    assert "http://2.2.2.2:80" in seen
+    assert "http://user:pass@gate.smartproxy.com:7000" in seen
+
+    # The residential gateway is still immune to banning even after attempt.
+    pm.ban("http://user:pass@gate.smartproxy.com:7000", seconds=300)
+    seen2 = {pm.next_proxy() for _ in range(12)}
+    assert "http://user:pass@gate.smartproxy.com:7000" in seen2
+
+
 def test_ban_expires():
     pm = ProxyManager()
     pm.load_from_list(["1.1.1.1:80"], protocol="http")
