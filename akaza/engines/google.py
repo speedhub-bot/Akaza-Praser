@@ -17,6 +17,9 @@ class GoogleEngine(BaseEngine):
         "our systems have detected",
         "/sorry/index?",
         "captcha",
+        # Datacenter-IP interstitial: "Please click here if you are not redirected".
+        "if you are not redirected",
+        "having trouble accessing google",
     )
 
     def build_url(self, query: str, page: int) -> str:
